@@ -1,4 +1,6 @@
-package med.voll.api.infra;
+package med.voll.api.infra.exception;
+
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -17,9 +19,8 @@ public class TratadorDeErros {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity tratarErro400(MethodArgumentNotValidException ex) {
+    public ResponseEntity<List<DadosErroValidacao>> tratarErro400(MethodArgumentNotValidException ex) {
         var erros = ex.getFieldErrors();
-
 
         return ResponseEntity
             .badRequest()
